@@ -4,9 +4,10 @@ exports.up = function(knex) {
         table.increments('id').primary()
         table.string('name').notNull()
         table.string('email').notNull()
+        table.string('password').notNull()
         table.string('guid').notNull()
           table.integer('typeOfAccessId').references('id')
-            .inTable('typeOfAccess').notNull()
+            .inTable('access').notNull()
     })
   };
   
