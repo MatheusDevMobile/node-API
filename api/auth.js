@@ -18,10 +18,11 @@ module.exports = app => {
                     return req.status(401).send()
                 }
 
-                const payLoad = { guid: user.guid }
+                const payLoad = { id: user.id }
                 res.json({
                     name: user.name,
                     email: user.email,
+                    typeOfAccessId: user.typeOfAccessId,
                     token: jwt.encode(payLoad, authSecret)
                 })
             })
