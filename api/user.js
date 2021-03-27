@@ -8,6 +8,21 @@ module.exports = app => {
         })
     }
 
+    const uuid = () => {
+
+        // Retorna um número randômico entre 0 e 15.
+        function randomDigit() {
+    
+            return ((Math.random() * 16) | 0).toString(16);
+            
+        }
+        
+        // para cada caracter [x] na string abaixo um valor hexadecimal é gerado via
+        // replace:
+        return 'xxxxxxxx-xxxx-4xxx-8xxx-xxxxxxxxxxxx'.replace(/x/g, randomDigit);
+    }
+    
+
     const getUsers = (req, res) => {
         app.db('users')
             .select('name', 'email', 'typeOfAccessId')
@@ -25,7 +40,7 @@ module.exports = app => {
                         name: req.body.name,
                         email: req.body.email,
                         password,
-                        guid: req.body.guid,
+                        guid: uuid(),
                         typeOfAccessId: req.body.typeOfAccessId,
                     })
                 .then(_ => res.status(200).send('Salvo com sucesso!'))
